@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <JoyKindDef>
+    <defName>Sport</defName>
+    <label>sport</label>
+		<needsThing>true</needsThing>
+  </JoyKindDef>
+
+	<JoyGiverDef>
+		<defName>HuntingTrip</defName>
+		<giverClass>HuntingIsFun.JoyGiver_HuntingTrip</giverClass>
+		<baseChance>2</baseChance>
+		<joyKind>Sport</joyKind>
+		<requiredCapacities>
+			<li>Moving</li>
+			<li>Manipulation</li>
+			<li>Sight</li>
+		</requiredCapacities>
+		<requiresEnjoyOutdoors>true</requiresEnjoyOutdoors>
+	</JoyGiverDef>
+	
+<!--
+  <JobDef>
+    <defName>FunFishing</defName>
+    <driverClass>FishingIsFun.JobDriver_Fish</driverClass>
+    <reportString>fishing.</reportString>
+    <joyDuration>4000</joyDuration>
+		<joySkill>Animals</joySkill>
+		<joyXpPerTick>0.003</joyXpPerTick>
+    <joyKind>Meditative</joyKind>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+
+  <JobDef>
+    <defName>SpearFishing</defName>
+    <driverClass>FishingIsFun.JobDriver_Fish</driverClass>
+    <reportString>spear fishing</reportString>
+    <joyDuration>4000</joyDuration>
+    <joyKind>SpearFishing</joyKind>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+	-->
+<!--
+  <JoyGiverDef>
+    <defName>SpearFishing</defName>
+    <giverClass>FishingIsFun.JoyGiver_Fish</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>SpearFishing</jobDef>
+    <joyKind>SpearFishing</joyKind>
+  </JoyGiverDef>	
+-->
+
+</Defs>
