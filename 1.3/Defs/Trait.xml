@@ -24,6 +24,7 @@
 		</requiredWorkTags>-->
 		<conflictingTraits>
 			<li>Undergrounder</li>
+			<li>Brawler</li>
 		</conflictingTraits>
   </TraitDef>
 

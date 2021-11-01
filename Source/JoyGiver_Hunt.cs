@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -60,28 +61,44 @@ namespace HuntingIsFun
 
 		public static Pawn GetTarget(Pawn hunter, Map map)
         {
+			List<Pawn> targets = new List<Pawn>();
 			Pawn victim = null;
-			int shooting = hunter.skills.GetSkill(SkillDefOf.Shooting)?.Level ?? 1;
-			int animals = hunter.skills.GetSkill(SkillDefOf.Animals)?.Level ?? 1;
-			int average = Mathf.RoundToInt((shooting + animals) / 2);
-			int num = Math.Max(shooting, animals) * average + 1; //Log.Message("Starting number is " + num);
+			int skill = (hunter.skills.GetSkill(SkillDefOf.Shooting)?.Level ?? 0) + (hunter.skills.GetSkill(SkillDefOf.Animals)?.Level ?? 0);
+			bool huntsHuman = false;
+			if (hunter.story.traits != null)
+			{
+				if (hunter.story.traits.HasTrait(TraitDefOf.Psychopath) || hunter.story.traits.HasTrait(TraitDefOf.Bloodlust) || hunter.story.traits.HasTrait(TraitDefOf.Cannibal))
+				{
+					huntsHuman = true;
+				} 
+			}
 			for (int i = 0; i < map.mapPawns.AllPawnsSpawnedCount; i++)
 			{
 				Pawn t = map.mapPawns.AllPawnsSpawned[i];
-				if (!t.Dead && t.RaceProps != null && t.RaceProps.Animal && t.Faction == null
+				if (!t.Dead && t.RaceProps != null && t.Faction == null && t.ageTracker.CurLifeStage.healthScaleFactor > .5f
 					&& hunter.CanReserveAndReach(t, PathEndMode.Touch, Danger.Deadly, 1, -1, null, false)
 					&& (!HistoryEventUtility.IsKillingInnocentAnimal(hunter, t) || new HistoryEvent(HistoryEventDefOf.KilledInnocentAnimal, hunter.Named(HistoryEventArgsNames.Doer)).Notify_PawnAboutToDo_Job())
 					&& (hunter.Ideo == null || !hunter.Ideo.IsVeneratedAnimal(t) || new HistoryEvent(HistoryEventDefOf.HuntedVeneratedAnimal, hunter.Named(HistoryEventArgsNames.Doer)).Notify_PawnAboutToDo_Job()))
 				{
-					int value= Rand.RangeInclusive(0,(int)(t.RaceProps.wildness * t.kindDef.combatPower));
-					if (value >= average && value < num)
+					if (t.RaceProps.Animal)
+					{
+						int value = Rand.RangeInclusive(0, (int)((t.RaceProps.baseHealthScale + t.RaceProps.wildness) * t.kindDef.combatPower));
+						if (value <= skill)
+						{
+							targets.Add(t);
+							//Log.Message(hunter.LabelShort + " is willing to hunt " + t.LabelShort + " with a value of " + value);
+						}
+					}
+					else if (t.IsWildMan() && huntsHuman && Rand.Value < (skill/100f))
                     {
-						//Log.Message(t.LabelShort + " has value of " + value);
-						num = value;
-						victim = t;
+						targets.Add(t);
                     }
-				} 
+				}
 			}
+			if (targets.Count > 0)
+            {
+				victim = targets[Rand.RangeInclusive(0, targets.Count - 1)];
+            }
 			return victim;
         }
     }

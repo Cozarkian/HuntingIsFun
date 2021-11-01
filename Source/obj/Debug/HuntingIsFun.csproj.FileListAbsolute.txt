@@ -1,0 +1,8 @@
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\HuntingIsFun\1.3\Assemblies\HuntingIsFun.dll
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\HuntingIsFun\Source\obj\Debug\HuntingIsFun.csprojAssemblyReference.cache
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\HuntingIsFun\Source\obj\Debug\HuntingIsFun.csproj.CoreCompileInputs.cache
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\HuntingIsFun\Source\obj\Debug\HuntingIsFun.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\HuntingIsFun\Source\obj\Debug\HuntingIsFun.csprojAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\HuntingIsFun\Source\obj\Debug\HuntingIsFun.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\HuntingIsFun\Source\obj\Debug\HuntingIsFun.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\HuntingIsFun\1.3\Assemblies\HuntingIsFun.dll
